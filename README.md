@@ -264,7 +264,7 @@ MotionSDK采用UDP与机器狗进行通讯。
 		cmake .. -DBUILD_PYTHON=ON     
 		make -j
 		```
-	
+
 - 正常情况下编译好的动态库文件会自动复制到 `/python/lib` 目录下，随后可以进入 `/Lite3_MotionSDK-add_python/python` 目录直接执行 ***example.py*** 文件：
 
 	```bash
