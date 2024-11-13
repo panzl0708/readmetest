@@ -224,11 +224,11 @@ MotionSDK采用UDP与机器狗进行通讯。
 
    - 如果主机是x86架构，在终端中输入：
 
-		```bash
+		
 		cd build
 		cmake .. -DBUILD_PLATFORM=x86     # cmake <path to where the CMakeLists.txt is>
 		make -j
-		```
+		
 		
 	- 如果主机是ARM架构，在终端中输入：
 
