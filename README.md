@@ -14,7 +14,8 @@
 [7 编译开发](#7-编译开发)  
 [7.1 检查通讯](#71-检查通讯)  
 [7.2 通讯问题排查](#72-通讯问题排查)  
-[7.3 编译开发](#73-编译开发)  
+[7.3 编译环境检查](#73-编译环境检查)  
+[7.4 编译开发](#74-编译开发)  
 [8 示例代码](#8-示例代码)  
 [其他注意事项](#其他注意事项)  
 
@@ -191,7 +192,7 @@ MotionSDK采用UDP与机器狗进行通讯。
 
 如果仍收不到机器狗上报数据，可在机器狗运动主机上抓包：
 
-- 如果 **MotionSDK** 在机器人运动主机内运行，I运行`sudo tcpdump -x port 43897 -i lo`;
+- 如果 **MotionSDK** 在机器人运动主机内运行，运行`sudo tcpdump -x port 43897 -i lo`;
 
 - 如果运动主机用户名为`user`（用户名请参照第4节），**MotionSDK** 在开发者的开发主机内运行，且开发主机通过WiFi与机器狗连接，运行`sudo tcpdump -x port 43897 -i p2p0`；
 
@@ -206,12 +207,35 @@ MotionSDK采用UDP与机器狗进行通讯。
  sudo ./stop.sh
  sudo ./restart.sh
 ```
-### 7.3 编译开发
+
+### 7.3 编译环境检查
+
+部分机器狗的Python环境不包含SDK例程所需的必要包，例如***numpy***，在开始编译前需要检查并下载必要的包，可按照下述步骤进行排查下载：
+
+- 检查Python环境所包含的包。打开一个终端，运行`python`或`python3`进入Python编译，并输入`help("modules")`检查Python环境所包含的包。
+
+如果Python环境缺乏编译所需的包，则需要对相应的包进行下载，可按照如下环境进行：
+- 打开一个终端，将机器狗通过WiFi连接至公网；
+
+	```bash
+	sudo nmcli dev wifi #列出搜索到的WiFi
+	sudo nmcli dev wifi connect "Your WiFi name" password "Your WiFi password" if name wlan0
+	#连接WiFi，引号中的Your WiFi name 和 Your WiFi password 需更改为实际可用的WiFi名称与密码
+	```
+	PNNG
+- WiFi连接成功后，打开一个终端，使用***apt-get***与***pip3***下载安装必要的包：
+	```bash
+	sudo apt-get install pip3   #使用apt-get安装pip3
+	pip3 install numpy          #使用pip3安装numpy
+	```
+照上述方法安装其它所需的包。
+
+### 7.4 编译开发
 
 确保SDK与机器狗正常通讯，并确保自己的下发控制指令正确后，可以将 ***main.cpp***原始代码中第73行的下发指令代码`send_cmd->SendCmd(robot_joint_cmd)`取消注释，然后重新编译运行:
 
-#### 7.3.1 C++版本编译运行
-- 删除之前生成的构建文件夹***build***：
+#### 7.4.1 C++版本编译运行
+- 删除之前生成的构建文件夹***build***；
 
 - 打开一个新的终端，新建一个空的 ***build*** 文件夹；
 
@@ -224,11 +248,11 @@ MotionSDK采用UDP与机器狗进行通讯。
 
    - 如果主机是x86架构，在终端中输入：
 
-		
+		```bash
 		cd build
 		cmake .. -DBUILD_PLATFORM=x86     # cmake <path to where the CMakeLists.txt is>
 		make -j
-		
+		```
 		
 	- 如果主机是ARM架构，在终端中输入：
 
@@ -244,7 +268,7 @@ MotionSDK采用UDP与机器狗进行通讯。
 	./Lite_motion
 	```
 
-#### 7.3.2 Python版本编译运行
+#### 7.4.2 Python版本编译运行
 
 - 删除之前生成的构建文件夹***build***：
 
@@ -259,13 +283,12 @@ MotionSDK采用UDP与机器狗进行通讯。
 
    在终端中输入：
 
-	```bash
-	cd build
-	cmake .. -DBUILD_PYTHON=ON
-	make -j
-	```
-		
-
+		```bash
+		cd build
+		cmake .. -DBUILD_PYTHON=ON     
+		make -j
+		```
+	
 - 正常情况下编译好的动态库文件会自动复制到 `/python/lib` 目录下，随后可以进入 `/Lite3_MotionSDK-add_python/python` 目录直接执行 ***example.py*** 文件：
 
 	```bash
