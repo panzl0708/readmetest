@@ -111,7 +111,6 @@ $$pos_{goal}=3.14, vel_{goal}=0, kp=30, kd=1, t_{ff} = 1$$
 	ip = '192.168.1.102'        # Motion host will send data to this IP address
 	target_port = 43897
 	local_port = 43893
-	~
 	```
 - 修改配置文件第一行中的IP地址，使得 **MotionSDK** 能够接收到机器狗数据:
 	- 如果 **MotionSDK** 在机器人运动主机内运行，IP设置为运动主机IP：`192.168.1.120`；  
