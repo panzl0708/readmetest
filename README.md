@@ -222,7 +222,6 @@ MotionSDK采用UDP与机器狗进行通讯。
 	sudo nmcli dev wifi connect "Your WiFi name" password "Your WiFi password" if name wlan0
 	#连接WiFi，引号中的Your WiFi name 和 Your WiFi password 需更改为实际可用的WiFi名称与密码
 	```
-	PNNG
 - WiFi连接成功后，打开一个终端，使用***apt-get***与***pip3***下载安装必要的包：
 	```bash
 	sudo apt-get install pip3   #使用apt-get安装pip3
