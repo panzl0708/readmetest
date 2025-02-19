@@ -1,4 +1,4 @@
-<img src="https://github.com/panzl0708/readmetest/tree/main/images/DeepRobotics.png" alt="Deep Robotics" style="width: 50%;">
+<img src="https://www.deeprobotics.cn/public/static/robot/images/logo_.png" alt="Deep Robotics" style="width: 25%;">
 
 DEEPRobotics is a national high-tech enterprise that focuses on the R&D, production, sales and service of humanoid robots, quadruped robots, and core components.
 The company has always adhered to independent innovation, with core technologies such as advanced control algorithms, intelligent environmental perception, and artificial intelligence algorithms at the forefront of international development.
